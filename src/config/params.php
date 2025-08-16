@@ -58,11 +58,20 @@ return [
         ]        
     ],
 
-    'mailer' => [
+    'mailer_dev' => [
         'class'            => 'yii\swiftmailer\Mailer',
         'useFileTransport' => true          
     ],
-
-
-
+    'mailer' => [
+        'class' => 'yii\swiftmailer\Mailer',
+        'useFileTransport' => false,
+        'transport' => [
+            'class'    => 'Swift_SmtpTransport',
+            'encryption' => 'tls',
+            'host'     => 'smtp.ionos.fr',
+            'port'     => '587',
+            'username' => 'Raoul@ass-team.fr',
+            'password' => 'Bebos88',
+        ],           
+    ]
 ];
