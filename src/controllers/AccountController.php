@@ -62,10 +62,11 @@ class AccountController extends \yii\web\Controller
                     ]
                 )
                     ->setTo($userEmail)
-                    ->setFrom(['Raoul@ass-team.fr' => 'raoul'])
-                    ->setReplyTo('no-reply@email.com')
+                    ->setFrom([$this->getSenderEmail() => $this->getSenderName()])
+                    ->setReplyTo([$this->getSenderEmail() => $this->getSenderName()])
                     ->setSubject('Mes Livres: activer mon compte')
                     ->send();
+
             }
 
             return $this->render('create-success', [
@@ -80,6 +81,15 @@ class AccountController extends \yii\web\Controller
             'model' => $model,
             'activationRequired' => Yii::$app->params['enableAccountActivation']
         ]);
+    }
+
+    public function getSenderName()
+    {
+        return Yii::$app->params['senderName'];
+    }
+    public function getSenderEmail()
+    {
+        return Yii::$app->params['senderEmail'];
     }
 
     /**
